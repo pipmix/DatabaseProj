@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Link Submission</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Link Submission</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <form action="/links/add" method='post' class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend></legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Title</label>
+      <div class="col-md-4">
+      <input id="textinput" name="name" type="text" placeholder="" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">URL</label>
+      <div class="col-md-4">
+      <input id="textinput" name="url" type="text" placeholder="" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textarea">Description</label>
+      <div class="col-md-4">
+        <textarea class="form-control" id="textarea" name="desc"></textarea>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Tags</label>
+      <div class="col-md-4">
+      <input id="textinput" name="tags" type="text" placeholder="" class="form-control input-md">
+      <span class="help-block">Seperate with commas </span>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="singlebutton"></label>
+      <div class="col-md-4">
+        <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
