@@ -1,63 +1,26 @@
 <!DOCTYPE html>
-
-
-
 <head>
-      <title>Database Project</title>
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<title>View Links</title>
+		% include('header.tpl')
+		% include('navbar.tpl')
 </head>
-<body>
 
+<div class="container">
 
+<div class="jumbotron">
+  <h1 class="display-3">Welcome to p-scripts</h1>
+  <p class="lead">Store all your content and information. Easily and securely</p>
+  <hr class="m-y-2">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Sign up</a>
+  </p>
+</div>
 
+</div>
 
-
-
-
-<nav class="navbar navbar-default ">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">DataBases</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">View Databases <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Edit Databases</a></li>
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Settings</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-
-
-</body>
 
 
 </html>

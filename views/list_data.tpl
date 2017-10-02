@@ -69,22 +69,20 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Company</th>
-        <th>Phone</th>
-        <th>Address</th>
-		<th>lat</th>
-		<th>long</th>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Description</th>
+		<th>Tags</th>
       </tr>
     </thead>
     <tbody>
 
 %for maps in name:
       <tr>
-        <td>{{maps['company']}}</td>
-        <td>{{maps['phone']}}</td>
-		<td>{{maps['address']}}</td>
-        <td>{{maps['lat']}}</td>
-		<td>{{maps['long']}}</td>
+        <td>{{maps['name']}}</td>
+        <td>{{maps['url']}}</td>
+		<td>{{maps['desc']}}</td>
+        <td>{{maps['tags']}}</td>
 
       </tr>
 %end

@@ -1,23 +1,41 @@
+
+<style>
+
+
+
+
+
+
+
+
+
+body {
+    font-size: 14px;
+    font-family: Roboto,sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+
+
+
+</style>
+
 <nav class="navbar navbar-default ">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+	<div class="container-fluid">
+		<div class="navbar-header">
+
       <a class="navbar-brand" href="/list_databases">DataBases</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/links">Links <span class="sr-only">(current)</span></a></li>
-		<li><a href="/maps">Maps <span class="sr-only">(current)</span></a></li>
-        <li><a href="list_databases">Edit Databases</a></li>
-
+        <li><a href="/links_view">Links <span class="sr-only">(current)</span></a></li>
+	<li><a href="/contacts_view">Contacts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/snippets_view">Snippets</a></li>
+<li><a href="/maps">Maps</a></li>
+<li><a href="/ideas">Idea Pad</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

@@ -18,7 +18,9 @@
             <div class="row">
                   <div class="col-md-10 ">
                         <ol class="breadcrumb">
-  
+  <li><a href="../list_databases">root</a></li>
+  <li class="active"><a href="../{{n2}}">{{n2}}</a></li>
+  <li class="active">{{n3}}</li>
 
 
 </ol>
@@ -28,7 +30,7 @@
                   </div>
 
 
-                  <div class="col-md-2"><a href="/maps_insert">
+                  <div class="col-md-2"><a href="/links">
                   <button type="button" class="btn btn-default btn-md">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add Link
             </button></a>
@@ -70,24 +72,19 @@
         <th>Company</th>
         <th>Phone</th>
         <th>Address</th>
-
-		<th>Lat</th>
-				<th>Long</th>
+		<th>lat</th>
+		<th>long</th>
       </tr>
     </thead>
     <tbody>
 
 %for maps in name:
       <tr>
-
-	 
-		<td><a href=" http://www.google.com/maps/place/{{maps['latitude']}},{{maps['longitude']}}">{{maps['company']}}</a></td>
+        <td>{{maps['company']}}</td>
         <td>{{maps['phone']}}</td>
 		<td>{{maps['address']}}</td>
-
-		<td>{{maps['latitude']}}</td>
-		<td>{{maps['longitude']}}</td>
-		
+        <td>{{maps['lat']}}</td>
+		<td>{{maps['long']}}</td>
 
       </tr>
 %end
