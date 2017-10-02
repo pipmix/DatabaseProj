@@ -5,18 +5,16 @@ import pymongo
 from pymongo import MongoClient
 
 import datetime
-
 from bson.objectid import ObjectId
 
 client = MongoClient('localhost', 27017)
 
 
-db = client.serverdb
-si = db.serverinfo
+db = client.dbserv
+linkCollect = db.links
+snipetsCollect = db.snippets
+linkCollect = db.maps
 
-plinks = client.linktest
-
-maps = client.maps
 
 languages = {"C++","Python","C#","HTML","Java"}
 
@@ -25,19 +23,19 @@ languages = {"C++","Python","C#","HTML","Java"}
 
 @route('/links_view')
 def links_view():
-    temp = client.data.links.find()
+    temp = client.dbserv.links.find()
     return template('links_view', dict(name = temp))
-	
+
 @route('/links_add')
 def links_add():
-    temp = client.data.links.find()
+    temp = client.dbserv.links.find()
     return template('links_add', dict(name = temp))
-	
+
 @route('/links_view/<tag>')
 def links_view_tag(tag):
-	temp = client.data.links.find({"tags": tag})
+	temp = client.dbserv.links.find({"tags": tag})
 	return template('links_view', dict(name = temp))
-	
+
 @route('/links_insert', method='POST')
 def links_insert():
 	name = bottle.request.forms.get("name")
@@ -45,17 +43,17 @@ def links_insert():
 	desc = bottle.request.forms.get("desc")
 	tags = bottle.request.forms.get("tags")
 	split_tags = tags.split(',')
-	new_tags= map(str.strip, split_tags)
-	
+	new_tags= list(map(str.strip, split_tags))
+
 	newData = {'name':name,'url':url, 'desc':desc,'tags':new_tags}
-	client.data.links.insert(newData)
+	client.dbserv.links.insert(newData)
 	bottle.redirect('/links_view')
-	
+
 @route('/links_edit/<id>')
 def links_edit(id):
-	editObj = client.data.links.find_one({"_id": ObjectId(id)})
+	editObj = client.dbserv.links.find_one({"_id": ObjectId(id)})
 	return template('links_linkedit', dict(name = editObj))
-	
+
 @route('/links_update/<id>', method='POST')
 def links_update(id):
 	name = bottle.request.forms.get("name")
@@ -63,16 +61,16 @@ def links_update(id):
 	desc = bottle.request.forms.get("desc")
 	tags = bottle.request.forms.get("tags")
 	split_tags = tags.split(',')
-	new_tags= map(str.strip, split_tags)
+	new_tags= list(map(str.strip, split_tags))
 	newData = {'name':name,'url':url,'desc':desc,'tags':new_tags}
-	client.data.links.update({"_id": ObjectId(id) },newData)
+	client.dbserv.links.update({"_id": ObjectId(id) },newData)
 	bottle.redirect('/links_view')
-	
+
 @route('/links_delete/<id>')
 def links_delete(id):
-	client.data.links.delete_one({"_id": ObjectId(id)})
-	bottle.redirect('/links_view')	
-	
+	client.dbserv.links.delete_one({"_id": ObjectId(id)})
+	bottle.redirect('/links_view')
+
 
 
 # END LINKS ---------------------------------------------------
@@ -84,24 +82,24 @@ def links_delete(id):
 
 @route('/snippets_view')
 def snippets_view():
-    temp = client.data.snippets.find()
+    temp = client.dbserv.snippets.find()
     return template('snippets_view', dict(name = temp))
-	
+
 @route('/snippets_add')
 def snippets_add():
-    temp = client.data.snippets.find()
+    temp = client.dbserv.snippets.find()
     return template('snippets_add', dict(name = temp), lang = languages)
-	
+
 @route('/snippets_view/<tag>')
 def snippets_view_tag(tag):
-	temp = client.data.snippets.find({"tags": tag})
+	temp = client.dbserv.snippets.find({"tags": tag})
 	return template('snippets_view', dict(name = temp))
-	
+
 @route('/snippets_edit/<id>')
 def snippets_edit(id):
-	editObj = client.data.snippets.find_one({"_id": ObjectId(id)})
+	editObj = client.dbserv.snippets.find_one({"_id": ObjectId(id)})
 	return template('snippets_snipedit', dict(name = editObj))
-	
+
 
 @route('/snippets_insert', method='POST')
 def snippets_insert():
@@ -111,11 +109,11 @@ def snippets_insert():
 	code = bottle.request.forms.get("code")
 	tags = bottle.request.forms.get("tags")
 	split_tags = tags.split(',')
-	new_tags= map(str.strip, split_tags)
+	new_tags= list(map(str.strip, split_tags))
 	newData = {'name':name,'desc':desc,'lang':lang,'code':code,'tags':new_tags}
-	client.data.snippets.insert(newData)
+	client.dbserv.snippets.insert(newData)
 	bottle.redirect('/snippets_view')
-	
+
 @route('/snippets_update/<id>', method='POST')
 def snippets_update(id):
 	name = bottle.request.forms.get("name")
@@ -124,20 +122,20 @@ def snippets_update(id):
 	code = bottle.request.forms.get("code")
 	tags = bottle.request.forms.get("tags")
 	split_tags = tags.split(',')
-	new_tags= map(str.strip, split_tags)
+	new_tags= list(map(str.strip, split_tags))
 	newData = {'name':name,'desc':desc,'lang':lang,'code':code,'tags':new_tags}
-	client.data.snippets.update({"_id": ObjectId(id) },newData)
-	bottle.redirect('/snippets_view')
-	
-@route('/snippets_delete/<id>')
-def snippets_delete(id):
-	client.data.snippets.delete_one({"_id": ObjectId(id)})
+	client.dbserv.snippets.update({"_id": ObjectId(id) },newData)
 	bottle.redirect('/snippets_view')
 
-	
-	
-	
-	
+@route('/snippets_delete/<id>')
+def snippets_delete(id):
+	client.dbserv.snippets.delete_one({"_id": ObjectId(id)})
+	bottle.redirect('/snippets_view')
+
+
+
+
+
 
 
 # END SNIPPETS ------------------------------------------------
@@ -149,19 +147,19 @@ def snippets_delete(id):
 @route('/')
 def index():
     return template('index', name='phil')
-	
-	
+
+
 @route('/login')
 def login():
     return template('login', name='phil')
-	
-	
+
+
 
 @route('/maps')
 def login():
-	data = client.maps.fixedmaps.find()
+	data = client.dbserv.maps.find()
 	return template('maps', dict(name = data))
-	
+
 @route('/start')
 def start():
     return template('start')
@@ -184,10 +182,10 @@ def list_databases_collect(datab,collect):
     te = data[collect]
     t4 = te.find()
     return template('list_data', dict(name = t4), n2 = datab, n3 = collect)
-	
+
 @route('/maps_insert')
 def links():
-    data = db.maps.fixedmaps.find()
+    data = db.dbserv.maps.find()
     return template('add_map', dict(x = data))
 
 
@@ -196,17 +194,17 @@ def links():
 
 @route('/links')
 def links():
-    data = db.linktest.fixedlinks.find()
+    data = db.dbserv.links.find()
     return template('links', dict(x = data))
-	
-@route('/insert_maps')	
+
+@route('/insert_maps')
 def insert_maps():
-    data = maps.fixedmaps.find()
+    data = dbserv.maps.find()
     return template('insert_maps', dict(x = data))
 
 @route('/bootstrap')
 def bootstrap():
-    data = plinks.links.find()
+    data = dbserv.links.find()
     return template('bootstrap', dict(x = data))
 
 #@route('/links/add', method='POST')
@@ -219,7 +217,7 @@ def bootstrap():
 #	newData = {'name':name,'url':url, 'desc':desc,'tags':split_tags}
 #	plinks.fixedlinks.insert(newData)
 #	bottle.redirect('/list_databases/linktest/fixedlinks')
-	
+
 @route('/maps/add', method='POST')
 def maps_add():
 	company = bottle.request.forms.get("company")
@@ -228,7 +226,7 @@ def maps_add():
 	latitude = bottle.request.forms.get("latitude")
 	longitude = bottle.request.forms.get("longitude")
 	newData = {'company':company,'phone':phone, 'address':address,'latitude':latitude,'longitude':longitude}
-	maps.fixedmaps.insert(newData)
+	dbserv.maps.insert(newData)
 	bottle.redirect('/maps')
 
 @route('/register')
@@ -275,4 +273,4 @@ def enterdata():
 
 
 
-run(host='0.0.0.0', port=80, debug=True, reloader=True)
+run(host='localhost', port=8080, debug=True, reloader=True)
